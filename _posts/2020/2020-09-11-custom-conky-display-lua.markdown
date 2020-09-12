@@ -1,5 +1,6 @@
 ---
 layout: post
+author: Taylor Talkington
 title: "Custom Conky displays through Lua and C++"
 date: 2020-09-11 20:20:00 -0400
 tags: c++ lua conky

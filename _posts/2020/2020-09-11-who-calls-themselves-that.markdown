@@ -1,5 +1,6 @@
 ---
 layout: post
+author: Taylor Talkington
 title:  "Who Calls Themselves That, Anyway?"
 date:   2020-09-11 15:00:00 -0400
 ---
