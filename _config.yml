@@ -25,7 +25,9 @@ title: Musings of an evil genius
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://the-eg.gitlab.io" # the base hostname & protocol for your site, e.g. http://example.com
 #twitter_username: 
-github_username:  The-EG
+github_username: The-EG
+linkedin_username: taylor-talkington
+facebook_username: tstalkington
 
 # Build settings
 theme: minima
@@ -52,3 +54,8 @@ plugins:
 #   - vendor/gems/
 #   - vendor/ruby/
 exclude: [vendor]
+
+#show_excerpts: true
+
+minima:
+  date_format: "%Y-%m-%d %H:%M"
