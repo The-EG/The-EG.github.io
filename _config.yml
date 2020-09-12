@@ -17,17 +17,32 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-author: Taylor Talkington
+author:
+  name: Taylor Talkington
+  email: "taylor.talkington@gmail.com"
 title: Musings of an evil genius 
 #email: Taylor.Talkingtoni at gmail dot com
-#description: >- # this means to ignore newlines until "baseurl:"
-#        description...
+description: >- # this means to ignore newlines until "baseurl:"
+    A random collection of things that I've worked on, made or otherwise
+    found interesting.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://the-eg.gitlab.io" # the base hostname & protocol for your site, e.g. http://example.com
-#twitter_username: 
-github_username: The-EG
-linkedin_username: taylor-talkington
-facebook_username: tstalkington
+
+
+ignore_theme_config: true
+
+minima:
+  skin: dark
+  date_format: "%Y-%m-%d %H:%M"
+  social_links:
+    twitter: 
+    github: The-EG
+    linkedin: taylor-talkington
+    facebook: tstalkington
+    #stackoverflow: "2799098"
+    gitlab:
+      - username: The-EG
+        instance: gitlab.com
 
 # Build settings
 theme: minima
@@ -57,5 +72,3 @@ exclude: [vendor]
 
 #show_excerpts: true
 
-minima:
-  date_format: "%Y-%m-%d %H:%M"
