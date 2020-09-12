@@ -9,7 +9,7 @@ tags: 3d-printing raspberry-pi
 
 ## Four Years
 
-For most of it's life, my Raspberry Pi 3B+ didn't have a nice case like the above, but instead it trudged through it's existance as this mess:  
+For most of it's life, my Raspberry Pi 3B+ didn't have a nice case like the above, but instead it trudged through its existance as this mess:  
 ![The Mess](/assets/the_mess.png)
 
 ## I had good intentions. 
