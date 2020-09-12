@@ -20,7 +20,7 @@ I have a monitor connected to the RPi and I noticed while setting up Conky that 
 
 The first thing to do was getting the proper development packages. The current version of Raspberry Pi OS, Buster, has multiple versions of Lua available:
 
-~~~
+{% highlight console %}
 taylor@brewserver:~ $ apt search liblua
 Sorting... Done
 Full Text Search... Done
@@ -33,18 +33,18 @@ liblua5.3-0/stable 5.3.3-1.1 armhf
 ...
 liblua50/stable 5.0.3-8+b1 armhf
 ...
-~~~
+{% endhighlight %}
 
 To make things worse, changes between 5.1 and 5.2 require breaking changes to code on the C side of things. To keep things simple and to ensure it would be compatible, I used the same version of Lua that Conky was built against:
 
-~~~
+{% highlight console %}
 taylor@brewserver:~ $ apt show conky-std
 Package: conky-std
 Version: 1.10.8-1
 ...
 Depends: ..., liblua5.1-0, ...
 ...
-~~~
+{% endhighlight %}
 
 So, Lua 5.1 it is: `sudo apt install liblua5.1-0-dev`
 
@@ -190,21 +190,21 @@ ${color grey}Fermenter: $color${lua sensor_temp_f Fermenter} ${lua_bar 4 sensor_
 
 The last thing to do is tell Lua where to find libbrewserver.so. If I try to run my new configuration with Conky, I get an error:
 
-~~~
+{% highlight console %}
 taylor@brewserver:~ $ conky --config ~/conky/brewserver.conf
 conky: llua_load: /mnt/pidata/home/taylor/conky/conkybrewserver.lua:1: module 'brewserver' not found:
 ...
-~~~
+{% endhighlight %}
 
 I can do that with an environment variable, `LUA_CPATH`. Note: it's **C**PATH not PATH since this is a shared library, not a lua file:
 
-~~~
+{% highlight console %}
 taylor@brewserver:~ $ LUA_CPATH="/mnt/pidata/brewserver/lib?.so;;" conky --conifg ~/conky/brewserver.conf
 conky: desktop window (140011c) is subwindow of root window (389)
 conky: window type - normal
 conky: drawing to created window (0x1c00001)
 conky: drawing to double buffer
 ...
-~~~
+{% endhighlight %}
 
 Also important to note: it's not just a folder but a pattern, in this case anything begining with 'lib' and has the extension '.so'. Because of that, it needs to be in quotes and use a real path (~ for home won't work). Also, the final ';' at the end causes Lua to still search for other modules using the default paths in addtion to this new one.
