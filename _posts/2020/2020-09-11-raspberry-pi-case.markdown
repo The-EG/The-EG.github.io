@@ -2,6 +2,7 @@
 layout: post
 title:  "Designing and Printing a Raspberry Pi Case"
 date:   2020-09-11 16:40:00 -0400
+tags: 3d-printing raspberry-pi
 ---
 
 ![Raspberry Pi Case](/assets/rpi_case.png)
