@@ -67,7 +67,7 @@ This:
 Now I can loop through each style, and create a list item for each: 
 
 {% highlight liquid %}{% raw %}
-{% for style in beer_style %}
+{% for style in beer_styles %}
  - {{ style.name }}
  ...
 {% endraw %}{% endhighlight %}
