@@ -25,7 +25,7 @@ The 1.1.4 can also be updated in this way, but only after flashing a bootloader 
 
 There are tons of tutorials on how to do this with an Arduino device or a USBSPI adapter. But, since I have 2 Raspberry Pis, I really didn't want to spend another $30 on a device that would be used once (once the bootloader is flashed, it never has to be done again).
 
-So, after some searching, I figured out it is possible to flash the bootloader with a Raspberry Pi, but most of the tutorials were either in complete (lots of 'use the appropriate value for your printer here') or just plain wrong.
+So, after some searching, I figured out it is possible to flash the bootloader with a Raspberry Pi, but most of the tutorials were either incomplete (lots of 'use the appropriate value for your printer here') or just plain wrong.
 
 Here's what I ended up doing:
 
@@ -170,7 +170,7 @@ Once that's completed without error, the bootloader has been flashed and it won'
 But, at this point, turning the printer on will only result in a blank screen. The firmware was erased when the bootloader was flashed.
 
 ## Compiling Marlin
-There are a few options for firmware, but I decided to use vinalla Marlin. Some posts and guides I've seen would indicate that my 1.1.4 board isn't compatible with the new 2.x version of Marlin, but the readme for the [Marlin project](https://github.com/MarlinFirmware/Marlin) does clearly state 2.0 supports both 32bit boards (the 'new' 4.2.x board) and 8bit boards (like my 1.1.4).
+There are a few options for firmware, but I decided to use vanilla Marlin. Some posts and guides I've seen would indicate that my 1.1.4 board isn't compatible with the new 2.x version of Marlin, but the readme for the [Marlin project](https://github.com/MarlinFirmware/Marlin) does clearly state 2.0 supports both 32bit boards (the 'new' 4.2.x board) and 8bit boards (like my 1.1.4).
 
 ### Getting the Sources
 Just get the [latest release](https://github.com/MarlinFirmware/Marlin/releases). You'll also need the configuration files linked [here](https://github.com/MarlinFirmware/Marlin/tree/2.0.x/config).
