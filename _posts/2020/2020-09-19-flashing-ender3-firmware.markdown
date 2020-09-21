@@ -3,6 +3,7 @@ layout: post
 author: Taylor Talkington
 title: "Flashing Firmware to an Ender 3 Pro with a Raspberry Pi"
 date: 2020-09-19 12:00 -0400
+modified_date: 2020-09-21 03:45 -0400
 tags: raspberry-pi 3d-printing
 ---
 ![marlin 2.0](/assets/marlin_info.png)
@@ -200,20 +201,43 @@ Now you can go back to the explorer pane (top button on left side bar) and open 
  
 Next, open Marlin/Configuration.h and:
  - Change the value defined in `#define STRING_CONFIG_H_AUTHOR` to something unique:
-   {% highlight C %}
+   ~~~
    #define STRING_CONFIG_H_AUTHOR "(Taylor Talkington, Ender-3 Pro)"
-   {%- endhighlight %}
+   ~~~
  - Change the baudrate (the Ender 3 Pro can handle 250000):
-   {% highlight C %}
+   ~~~
    #define BAUDRATE 250000
-   {%- endhighlight %}
+   ~~~
  - Enable PID bed heating: uncomment `#define PIDTEMPBED`
 
 Next, open Configuration_adv.h and:
  - Enable setting the progress bar over USB (ie. from OctoPrint) using the M73 command. Uncomment `#define LCD_SET_PROGRESS_MANUALLY`
  - Enable the M73 command to also set the remaining time: uncomment `#definte USE_M73_REMAINING_TIME`
  
- This is the point at which any other configuration changes should be made.
+This is the point at which any other configuration changes should be made.
+ 
+_Update 2020-09-20:_ I ended up trying out a few more configuration changes:
+
+Configuration.h
+ - Set the ESteps to 96 since I calibrated it to that value:  
+   ~~~
+   #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 96 }
+   ~~~
+ - Tell Marlin that the 1.1.4 board uses TMC2208 drivers in standalone mode:
+   ~~~
+   #define X_DRIVER_TYPE  TMC2208_STANDALONE
+   #define Y_DRIVER_TYPE  TMC2208_STANDALONE
+   #define Z_DRIVER_TYPE  TMC2208_STANDALONE
+   #define E0_DRIVER_TYPE TMC2208_STANDALONE
+   ~~~
+
+Configuration_adv.h
+ - Show current X/Y with a decimal value on the LCD: `#define LCD_DECIMAL_SMALL_XY`
+ - Show remaining time on LCD and (needed for the `USE_M73_REMAINING_TIME` above) and cycle between that, elapsed time and % done:
+   ~~~
+   #define SHOW_REMAINING_TIME
+   #define ROTATE_PROGRESS_DISPLAY
+   ~~~
  
 ### Build Marlin
 Build by selecting Terminal->Run Build Task.
@@ -253,4 +277,16 @@ This takes a bit longer than the bootloader, so be patient. When complete, the p
 
 Success!
 
-_note: it should also be possible to use the OctoPrint [Firmware Updater plugin](https://plugins.octoprint.org/plugins/firmwareupdater/) to flash the firmware directly from OctoPrint._
+_~~note: it should also be possible to use the OctoPrint [Firmware Updater plugin](https://plugins.octoprint.org/plugins/firmwareupdater/) to flash the firmware directly from OctoPrint.~~_
+The [Firmware Updater plugin](https://plugins.octoprint.org/plugins/firmwareupdater/) works well, it just needs the following options:
+
+|---
+| Setting | Value
+|---
+| Flash method | avrdude (Atmel AVR Family)
+| AVR MCU | Atmega1284p
+| Path to avrdude | /usr/bin/avrdude
+| AVR Programmer Type | arduino
+|---
+ 
+When using the Firmware Updater plugin, disconnect OctoPrint from the printer first!
