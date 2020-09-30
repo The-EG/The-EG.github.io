@@ -1,7 +1,7 @@
 ---
 layout: post
 author: Taylor Talkington
-title: "Creating Blog Statistic/Summary Pages with Jekyll"
+title: "Creating Blog Statistic/Summary Pages with Jekyll - I"
 date: 2020-09-18 15:40 -0400
 tags: jekyll data!
 ---
