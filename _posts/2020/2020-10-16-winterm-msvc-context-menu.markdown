@@ -9,10 +9,10 @@ Since I'm stuck on Windows, that also means most of the time I'm using MS Visual
 
 Visual Studio has come a long way in the past few years, and I actually don't mind the community version now, it even works with CMake quite well!
 
-But, there are still times that need or prefer to use the command line, and the environment there hasn't changed in many years. If I open the "x64 Native Tools Command Prompt for VS 2019" shortcut, I'm greet by this ugly thing:
+But, there are still times that need or prefer to use the command line, and the environment there hasn't changed in many years. If I open the "x64 Native Tools Command Prompt for VS 2019" shortcut, I'm greeted by this ugly thing:
 ![old terminal](/assets/old_term.png)
 
-Windows 10 has had a [much better terminal](https://www.microsoft.com/en-us/p/windows-terminal/9n0dx20hk701?activetab=pivot:overviewtab) for a while now. I've actually switch from using ConEMU to it, exclusively.
+Windows 10 has had a [much better terminal](https://www.microsoft.com/en-us/p/windows-terminal/9n0dx20hk701?activetab=pivot:overviewtab) for a while now. I've actually switched from using ConEMU to it, exclusively.
 
 Unfortunately, it's also a Windows 10 app, and not and old school executable, so configuring and running it requires a different approach.
 
