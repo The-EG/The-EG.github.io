@@ -3,6 +3,7 @@ layout: post
 author: Taylor Talkington
 title: "More Marlin 2.0 Configuration for Ender 3 Pro"
 date: 2020-10-02 08:27 -0400
+modified_date: 2020-10-05 14:25 -0400
 tags: 3d-printing
 ---
 
@@ -31,7 +32,9 @@ Using HDMI port 2 seemed to help...on boot, everything started up properly and w
 
 I eventually discovered that the wifi issues seemed to be the worst while I was printing something with OctoPrint, especially since upgrading the firmware. A few times, the wifi stopped working while I was standing at the printer, using the touchscreen.
 
-So, I figured that I'd move the baud rate back to the default and try it. So far, the wifi seems more stable.
+So, I figured that I'd move the baud rate back to the default and try it.
+
+~~So far, the wifi seems more stable.~~ With more testing, it doesn't appear to have an effect. I guess I'll just increase it back so at least I'm getting better transfer speeds. Back to the drawing board with the RPi 4 wifi!
 
 ## Firmware Size
 One feature not enabled by default is the 'Filament Change' command. The default firmware that came with the printer had this function and I had used it a few times to create multi-color prints.
