@@ -3,9 +3,10 @@ layout: post
 author: Taylor Talkington
 title: "More Marlin 2.0 Configuration for Ender 3 Pro"
 date: 2020-10-02 08:27 -0400
-modified_date: 2020-10-05 14:25 -0400
+modified_date: 2020-12-02 02:18 -0400
 tags: 3d-printing
 ---
+*updated 2020-12-02 with current configuration options*
 
 Since [flashing my Ender 3 Pro with Marlin 2.0]({% link _posts/2020/2020-09-19-flashing-ender3-firmware.markdown %}), I've been tweaking things and changing the configuration a bit.
 
@@ -83,8 +84,29 @@ Configuration.h:
 // 96 for esteps is closer than 93
 #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 96 }
 
+// Set the default max feedrate to what I normally change it to, especially the extruder
+#define DEFAULT_MAX_FEEDRATE { 500, 500, 5, 50}
+
+// A bit more sane values for default max acceleration
+#define DEFAULT_MAX_ACCELERATION { 1500, 1500, 100, 5000 }
+
 // Needed to enable the filament change (advanced pause) command
 #define NOZZLE_PARK_FEATURE
+
+// Manual mesh bed leveling
+#define MESH_BED_LEVELING
+// Inset the edges of the manual mesh so that it starts over the leveling screws
+#define MESH_INSET 30
+// Set the manual mesh through the LCD
+#define LCD_BED_LEVELING
+
+// Add a menu item to move between bed corners for manual bed adjustment
+#define LEVEL_BED_CORNERS
+
+// Settings to enable better control of 5015 (and other) blower fans at less than 100% speed
+#define FAN_SOFT_PWM
+#define SOFT_PWM_SCALE 1
+#define SOFT_PWM_DITHER
 
 {% endhighlight %}
 
