@@ -3,6 +3,7 @@ layout: post
 author: Taylor Talkington
 title: Adding Hardware Buttons to Control OctoPrint
 date: 2020-12-23 05:17 -0500
+modified_date: 2021-01-18 09:06 -0500
 ---
 The saga of getting my Raspberry Pi 4B running OctoPrint and other things smoothly continues...
 
@@ -20,37 +21,42 @@ The buttons are simple to wire. This setup uses 3 wires for the 2 buttons. One w
 
 ## A simple OctoPrint plugin ##
 
+*Update 2021-01-18:* I was having issues with the buttons being triggered erroneously while using the RPi.GPIO Python module..after some research I switched to gpiozero, which still uses RPi.GPIO but adds some additional functionality on top of it. The code is updated below.
+
 I found the simplest way monitor the GPIO state and control OctoPrint was from an OctoPrint plugin written in Python. There are a couple of plugins that include support for physical buttons, but they also have a ton of features and overhead that I don't need or want.
 
-So, I wrote a very simple one that sets up the GPIO pins with software pull-up resistors, adds callbacks for falling events (when the button is pressed) and then does something when the buttons are pressed:
+So, I wrote a very simple one that sets up the GPIO pins with software pull-up resistors, adds callbacks for when the buttons are *held*:
 
 {% highlight python %}
 from __future__ import absolute_import, unicode_literals
 
 import subprocess
-import RPi.GPIO as gpio
+import gpiozero
 
 import octoprint.plugin
 
 class HWButtonsPlugin(octoprint.plugin.SettingsPlugin):
     def __init__(self):
         super().__init__()
-        gpio.setmode(gpio.BCM) # use 'GPIO' numbers
-        gpio.setup(20, gpio.IN, pull_up_down=gpio.PUD_UP) # green button
-        gpio.setup(21, gpio.IN, pull_up_down=gpio.PUD_UP) # red button
-        gpio.add_event_detect(20, gpio.FALLING, callback=self.on_button_pressed, bouncetime=1000)
-        gpio.add_event_detect(21, gpio.FALLING, callback=self.on_button_pressed, bouncetime=1000)
+        self.cancel = gpiozero.Button(21, pull_up=True, hold_time=1)
+        self.wifi = gpiozero.Button(20, pull_up=True, hold_time=1)
+
+        self.cancel.when_held = self.on_cancel_held
+        self.wifi.when_held = self.on_wifi_held
 
     def __del__(self):
-        gpio.cleanup()
+        self.cancel.close()
+        self.wifi.close()
 
-    def on_button_pressed(self, channel):
-        if channel==20:
-            self._logger.info("Resetting wifi-module. (Hardware button pressed)")
-            subprocess.call("/home/taylor/reset_wifi.sh", shell=True)
-        if channel==21 and self._printer.is_operational() and self._printer._is_printing() and not self._printer is_cancelling():
+    def on_wifi_held(self):
+        self._logger.info("Resetting wifi-module. (Hardware button pressed)")
+        subprocess.call("/home/taylor/reset_wifi.sh", shell=True)
+
+    def on_cancel_held(self):
+        if self._printer.is_operational() and self._printer.is_printing() and not self._printer.is_cancelling():
             self._logger.info("Cancelling print. (Hardware button pressed)")
             self._printer.cancel_print()
+
 
 __plugin_name__ = "Hardware Buttons"
 __plugin_version__ = "1.0.0"
@@ -61,8 +67,6 @@ __plugin_implementation__ = HWButtonsPlugin()
 
 Some details:
  - Subclassing `octoprint.plugin.SettingsPlugin` is not used at this point. I plan on making the plugin configuratable at some point...
- - `gpio.setmode(gpio.BCM)` tells `RPi.GPIO` to use the 'GPIO' numbers (ie. GPIO 20) instead of the physical pin numbers.
- - `bouncetime=1000` in the `add_event_detect` calls causes the callback to only be triggered once per second (100 msecs). Otherwise, the callback would be triggered multiple times for a single press due to 'bounce.'
  - All of the `__plugin_*` variables are how OctoPrint reads and loads the plugin
 
 Installing the plugin is simple: place the python file in ~/.ocotprint/plugins and restart OctoPrint.
