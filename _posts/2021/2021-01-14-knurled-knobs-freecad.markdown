@@ -17,7 +17,7 @@ After some research and combining a few different techniques, here's what I came
 
 This technique only works on circular surfaces (cylinders), but that's ok because most knobs and handles are round anyway...
 
-For this example, I made a knob for my 3D Printer's LCD encoder in FreeCAD version 0.18. Actions specified are in the 'Task' pane.
+For this example, I made a knob for my 3D Printer's LCD encoder in FreeCAD version 0.19. Actions specified are in the 'Task' pane.
 
 First, create a simple knob:
 1. Select Part Design Workbench
