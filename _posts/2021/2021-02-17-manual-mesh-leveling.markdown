@@ -70,16 +70,6 @@ Before trying to account for any warping, the bed needs to be leveled properly a
 I print a test pattern in just the corners above the screws. It may take a few prints to get everyting adjusted to the point where all four corners are printing properly:  
 ![corners](/assets/mesh_leveling/4_corners.png)
 
-### Using a Stored Mesh
-
-By default, the printer won't use a stored mesh after auto homing. A command must be added to the slicer's Start G-Code to enable the mesh, after the `G28` command:
-
-{% highlight text %}
-M420 S
-{% endhighlight %}
-
-However, that command will fail if the mesh has not been setup yet. So, only add the command after editing the mesh for the first time and then reslice the test pattern before printing again.
-
 ### Manual Mesh Calibration
 
 Once the corners are leveled properly, the mesh can be calibrated using a similar test pattern, but with a circle at each mesh point.
@@ -154,7 +144,19 @@ Recv: echo:Settings Stored (734 bytes; crc 59364)
 Recv: ok
 {% endhighlight %}
 
-Now, add the `M420 S` command to your slicer's starg g-code, reslice the test pattern and print it again. Make any additional adjustments. It may take a few times to get all of the points adjusted properly.
+### Using a Stored Mesh
+
+By default, the printer won't use a stored mesh after auto homing. A command must be added to the slicer's Start G-Code to enable the mesh, after the `G28` command:
+
+{% highlight text %}
+M420 S
+{% endhighlight %}
+
+However, that command will fail if the mesh has not been setup yet. So, only add the command after editing the mesh for the first time.
+
+### Iterate
+
+Now that a mesh is defined, add the `M420 S` command to your slicer's starg g-code, reslice the test pattern and print it again. Make any additional adjustments. It may take a few times to get all of the points adjusted properly.
 
 
 At this point, the mesh should be setup and good. It shouldn't need to be adjusted unless the bed is changed.
