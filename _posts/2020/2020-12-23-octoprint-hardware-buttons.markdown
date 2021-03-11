@@ -3,7 +3,7 @@ layout: post
 author: Taylor Talkington
 title: Adding Hardware Buttons to Control OctoPrint
 date: 2020-12-23 05:17 -0500
-modified_date: 2021-01-18 09:06 -0500
+modified_date: 2021-03-11 18:24 -0500
 ---
 The saga of getting my Raspberry Pi 4B running OctoPrint and other things smoothly continues...
 
@@ -70,3 +70,15 @@ Some details:
  - All of the `__plugin_*` variables are how OctoPrint reads and loads the plugin
 
 Installing the plugin is simple: place the python file in ~/.ocotprint/plugins and restart OctoPrint.
+
+### Reset Wifi Script
+
+This is my reset wifi script:
+{% highlight terminal %}
+#!/bin/bash
+sudo modprobe -r brcmfmac
+sleep 1s
+sudo modprobe brcmfmac
+sleep 1s
+sudo iwconfig wlan0 power off
+{% endhighlight %}
