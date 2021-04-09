@@ -3,7 +3,7 @@ layout: post
 author: Taylor Talkington
 title: "More Marlin 2.0 Configuration for Ender 3 Pro"
 date: 2020-10-02 08:27 -0400
-modified_date: 2020-12-02 02:18 -0400
+modified_date: 2021-04-09 11:07
 tags: 3d-printing
 ---
 *updated 2020-12-02 with current configuration options*
@@ -74,12 +74,6 @@ Configuration.h:
 
 // Enable PID bed heating
 #define PIDTEMPBED
-
-// Ender 3 Pro with v1.1.4 board, has TMC2208 drivers in standalone mode
-#define X_DRIVER_TYPE  TMC2208_STANDALONE
-#define Y_DRIVER_TYPE  TMC2208_STANDALONE
-#define Z_DRIVER_TYPE  TMC2208_STANDALONE
-#define E0_DRIVER_TYPE TMC2208_STANDALONE
 
 // 96 for esteps is closer than 93
 #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 96 }

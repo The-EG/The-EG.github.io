@@ -3,7 +3,7 @@ layout: post
 author: Taylor Talkington
 title: "Flashing Firmware to an Ender 3 Pro with a Raspberry Pi"
 date: 2020-09-19 12:00 -0400
-modified_date: 2020-09-21 03:45 -0400
+modified_date: 2021-04-09 11:05
 tags: raspberry-pi 3d-printing
 ---
 ![marlin 2.0](/assets/marlin_info.png)
@@ -222,13 +222,6 @@ Configuration.h
  - Set the ESteps to 96 since I calibrated it to that value:  
    ~~~
    #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 96 }
-   ~~~
- - Tell Marlin that the 1.1.4 board uses TMC2208 drivers in standalone mode:
-   ~~~
-   #define X_DRIVER_TYPE  TMC2208_STANDALONE
-   #define Y_DRIVER_TYPE  TMC2208_STANDALONE
-   #define Z_DRIVER_TYPE  TMC2208_STANDALONE
-   #define E0_DRIVER_TYPE TMC2208_STANDALONE
    ~~~
 
 Configuration_adv.h
