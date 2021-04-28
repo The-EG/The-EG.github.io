@@ -1,7 +1,7 @@
 ---
 layout: post
 author: Taylor Talkington
-title: Marlin Manual Mesh Bed Levelling
+title: Marlin Manual Mesh Bed Leveling
 date: 2021-02-17 09:30 -0500
 ---
 
@@ -9,7 +9,7 @@ The print beds on 3D printers aren't always perfectly flat. Sometimes you can ge
 
 ## Mesh Bed Leveling
 
-There are few options for compensating for a warped bed, but I chose to use Mesh Bed Levelling because it didn't require any extra hardware or tools.
+There are few options for compensating for a warped bed, but I chose to use Mesh Bed Leveling because it didn't require any extra hardware or tools.
 
 This does require building a custom configuration for Marlin.
 
