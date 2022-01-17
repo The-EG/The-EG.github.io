@@ -30,7 +30,7 @@ code {
   .gi    { color: #000; background-color: #dfd } // Generic.Inserted
   .gi .x { color: #000; background-color: #afa } // Generic.Inserted.Specific
   .go    { color: #888 } // Generic.Output
-  .gp    { color: #555 } // Generic.Prompt
+  .gp    { color: rgb(109, 109, 109) } // Generic.Prompt
   .gs    { font-weight: bold } // Generic.Strong
   .gu    { color: #aaa } // Generic.Subheading
   .gt    { color: #a00 } // Generic.Traceback
@@ -49,7 +49,7 @@ code {
   .ne    { color: #900; font-weight: bold } // Name.Exception
   .nf    { color: #900; font-weight: bold } // Name.Function
   .nn    { color: #555 } // Name.Namespace
-  .nt    { color: #343488 } // Name.Tag
+  .nt    { color: #4a4aa3 } // Name.Tag
   .nv    { color: #008080 } // Name.Variable
   .ow    { font-weight: bold } // Operator.Word
   .w     { color: #bbb } // Text.Whitespace

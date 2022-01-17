@@ -149,9 +149,9 @@ blockquote {
 pre,
 code {
   @include relative-font-size(0.9375);
-  border: 1px solid $grey-color-dark;
-  border-radius: 3px;
-  background-color: #1d1d1d;
+  border: 1px solid rgb(75, 75, 75);
+  border-radius: 4px;
+  background-color: rgb(40, 40, 40);
 }
 
 code {
