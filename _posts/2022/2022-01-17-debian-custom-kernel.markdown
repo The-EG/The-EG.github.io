@@ -3,6 +3,7 @@ layout: post
 author: Taylor Talkington
 title: Compiling a Custom 'Pristine' Kernel in Debian Linux
 date: 2022-01-17 07:15EST
+modified_date: 2022-01-23 08:50EST
 ---
 
 I've really been enjoying Linux since coming back to it late last year. To my surprise, almost everything worked or had prebuilt packages: all of my Razer RGB peripherals, NVidia GPU, sound card etc.
@@ -66,3 +67,60 @@ $ sudo apt purge linux-headers-5.15.0-2-amd64 linux-headers-5.15.0-2-common linu
 ```
 
 It's a good idea to have the last known good version of the kernel around and probably still the last official Debian built kernel too, so don't uninstall all of them.
+
+## Automation
+
+I recently made a script that does everything but installing the deb packages above. It simple and doesn't do any error checking beyond checking to see if the latest version is new:
+
+```bash
+#!/bin/bash
+
+# this script requires jq: sudo apt install jq
+
+echo "Finding latest release version..."
+
+REL_INFO=`curl -s 'https://kernel.org/releases.json' | jq '.releases[] | select(.moniker=="stable")'`
+
+REL_VERSION=`echo "$REL_INFO" | jq -r .version`
+RUN_VERSION=`uname -r`
+
+echo "Latest release is $REL_VERSION"
+echo "Currently running $RUN_VERSION"
+
+if [ "$REL_VERSION" = "$RUN_VERSION" ]; then
+    echo "Already running latest release"
+    exit 0
+fi
+
+REL_DIR=$(pwd)/$REL_VERSION
+REL_SRC=`echo "$REL_INFO" | jq -r .source`
+
+echo "Building new kernel packages in $REL_DIR"
+
+mkdir -p $REL_DIR
+pushd $REL_DIR > /dev/null
+
+echo "Downloading kernel sources: $REL_SRC..."
+wget -q $REL_SRC
+
+echo "Extracting sources..."
+tar lxf linux-$REL_VERSION.tar.xz
+
+pushd linux-$REL_VERSION > /dev/null
+
+echo "Applying OpenRGB Patch..."
+patch -p1 < ~/src/OpenRGB/OpenRGB.patch
+
+echo "Copying currently running kernel configuration..."
+cp /boot/config-$(uname -r) .config
+make oldconfig
+
+echo "Building..."
+make deb-pkg -j6
+
+popd > /dev/null
+
+popd > /dev/null
+
+echo "done!"
+```
