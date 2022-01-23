@@ -19,7 +19,7 @@ One thing that hasn't changed is where to get the sources: [kernel.org](https://
 
 Patches can be applied directly to the kenerl source. In my case:
 ```terminal
-$ patch p1 < ~/src/OpenRGB/OpenRGB.patch
+$ patch -p1 < ~/src/OpenRGB/OpenRGB.patch
 ```
 
 ## Configuration
