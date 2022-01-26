@@ -3,7 +3,7 @@ layout: post
 author: Taylor Talkington
 title: Compiling a Custom 'Pristine' Kernel in Debian Linux
 date: 2022-01-17 07:15EST
-modified_date: 2022-01-23 08:50EST
+modified_date: 2022-01-26 02:30EST
 ---
 
 I've really been enjoying Linux since coming back to it late last year. To my surprise, almost everything worked or had prebuilt packages: all of my Razer RGB peripherals, NVidia GPU, sound card etc.
@@ -77,6 +77,8 @@ I recently made a script that does everything but installing the deb packages ab
 
 # this script requires jq: sudo apt install jq
 
+BASEDIR=`dirname "${BASH_SOURCE[0]}"`
+
 echo "Finding latest release version..."
 
 REL_INFO=`curl -s 'https://kernel.org/releases.json' | jq '.releases[] | select(.moniker=="stable")'`
@@ -92,7 +94,7 @@ if [ "$REL_VERSION" = "$RUN_VERSION" ]; then
     exit 0
 fi
 
-REL_DIR=$(pwd)/$REL_VERSION
+REL_DIR=$BASEDIR/$REL_VERSION
 REL_SRC=`echo "$REL_INFO" | jq -r .source`
 
 echo "Building new kernel packages in $REL_DIR"
