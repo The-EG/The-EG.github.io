@@ -37,6 +37,10 @@ minima:
 github_username: The-EG
 linkedin_username: taylor-talkington
 facebook_username: tstalkington
+mastodon:
+ -
+    instance: hachyderm.io
+    username: TheEG
 
 # Build settings
 theme: minima
