@@ -39,7 +39,6 @@ Since I've already got the proper start-gcode for enabling it, I'll just disable
 {% endhighlight %}
 
 Next the options for UBL:
- - I like to set `MESH_INSET` to 30, this puts the 4 corners of the mesh directly over the 4 adjustment knobs. While not strictly necessary, I find that this makes it easier to setup the mesh when manually probing. The corners should always be 0.0.
  - `MAX_POINTS_X` will controll how dense the mesh is. 3 is a good starting point, 5 or 7 is probably about the most you'd want to do when probing manually.
 
 {% highlight c %}
@@ -49,7 +48,7 @@ Next the options for UBL:
   //========================= Unified Bed Leveling ============================
   //===========================================================================
 
-  #define MESH_INSET 30             // Set Mesh bounds as an inset region of the bed
+  //#define MESH_INSET 0             // Set Mesh bounds as an inset region of the bed
   #define GRID_MAX_POINTS_X 5       // Don't use more than 15 points per axis, implementation limited.
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
