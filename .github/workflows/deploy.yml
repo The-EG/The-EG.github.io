@@ -22,7 +22,7 @@ jobs:
         uses: actions/setup-python@v5
       - name: Install Deps
         run: |
-          pip install -r "pelican"
+          pip install "pelican"
       - name: Build Documentation
         run: |
 
