@@ -1,0 +1,18 @@
+div.highlight {
+    background: var(--bs-tertiary-bg);
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    border: 1px solid var(--bs-tertiary-color);
+}
+
+div.highlight > pre {
+    margin-bottom: 0px;
+}
+
+.literal {
+    background: var(--bs-tertiary-bg);
+    padding-left: 0.125em;
+    padding-right: 0.125em;
+}

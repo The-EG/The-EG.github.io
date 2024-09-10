@@ -1,7 +1,5 @@
-_site
-.sass-cache
-.jekyll-cache
-.jekyll-metadata
-vendor
 *~
 .vscode
+.venv
+output
+__pycache__

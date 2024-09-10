@@ -1,0 +1,38 @@
+name: Build and Deploy Blog
+
+on:
+  push:
+    branches:
+      - gh-pages
+
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Setup Python
+        uses: actions/setup-python@v5
+      - name: Install Deps
+        run: |
+          pip install -r "pelican"
+      - name: Build Documentation
+        run: |
+
+          pelican --settings publishconf.py --extra-settings SITEURL='"${{ steps.pages.outputs.base_url }}"' --output output
+          "" > output/.nojekyll
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'output'
+      - name: Deploy to GitHub Pages
+        id: Deployment
+        uses: actions/deploy-pages@v4
+    

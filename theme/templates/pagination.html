@@ -1,0 +1,19 @@
+{% if DEFAULT_PAGINATION %}
+{% set lowpage = 1 if articles_page.number - 5 < 1 else articles_page.number - 5 %}
+{% set highpage = articles_paginator.num_pages if articles_page.number + 5 > articles_paginator.num_pages else articles_page.number + 5 %}
+<nav>
+  <ul class="pagination justify-content-center mt-3">
+    {% if articles_page.has_previous() %}
+        <li class="page-item"><a class="page-link" href="{{ SITEURL }}/{{ articles_previous_page.url }}">Previous</a></li>
+    {% endif %}
+    {% for pagenum in range(lowpage, highpage+1) %}
+    <li class="page-item {{ 'active' if pagenum == articles_page.number else ''}}">
+      <a class="page-link" href="{{ SITEURL }}/{{ articles_paginator.page(pagenum).url }}">{{ pagenum }}</a>
+    </li>
+    {% endfor %}
+    {% if articles_page.has_next() %}
+        <li class="page-item"><a class="page-link" href="{{ SITEURL }}/{{ articles_next_page.url }}">Next</a></li>
+    {% endif %}
+  </ul>
+</nav>
+{% endif %}
