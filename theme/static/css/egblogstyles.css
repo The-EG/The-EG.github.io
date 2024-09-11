@@ -1,10 +1,16 @@
+/* Code blocks */
 div.highlight {
     background: var(--bs-tertiary-bg);
     padding-left: 1em;
     padding-right: 1em;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-bottom: 1em;
     border: 1px solid var(--bs-tertiary-color);
+    border-radius: 5px;
+    box-shadow: var(--bs-box-shadow);
 }
 
 div.highlight > pre {
@@ -13,6 +19,16 @@ div.highlight > pre {
 
 .literal {
     background: var(--bs-tertiary-bg);
+    padding-top: 0.125em;
+    padding-bottom: 0.125em;
     padding-left: 0.125em;
     padding-right: 0.125em;
+    border-radius: 5px;
+}
+
+.btn-tag {
+    --bs-btn-padding-y: 0.125rem;
+    --bs-btn-padding-x: 0.25rem;
+    --bs-btn-font-size: 0.756rem;
+    --bs-btn-border-radius: 7px;
 }

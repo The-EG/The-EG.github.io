@@ -31,7 +31,11 @@
       <div>
         <small class="text-secondary">
           {% for author in article.authors %}
-            <a href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>
+            <a 
+                class="link-secondary link-offset-1 link-underline-opacity-25 link-underline-opacity-100-hover"
+                href="{{ SITEURL }}/{{ author.url }}">
+                {{ author }}
+            </a>
           {%- endfor -%}: 
           <time datetime="{{ article.date.isoformat() }}">
             {{ article.locale_date }}
@@ -43,12 +47,14 @@
           {% endif %}
         </small>
       </div>
-      <div>
-        <span class="text-secondary">Tags: </span>
+      <div class="mt-1">
+        <small class="text-secondary">Tags: </small>
         <div class="d-inline-flex flex-row">
         {% for tag in article.tags %}
-            <a href="{{ SITEURL }}/{{ tag.url }}" class="me-2">
-                <span class="badge rounded-pill text-bg-secondary">{{ tag }}</span>
+            <a 
+                class="btn btn-outline-secondary btn-tag me-1"
+                href="{{ SITEURL }}/{{ tag.url }}">
+                {{ tag }}
             </a>
         {% endfor %}
         </div>

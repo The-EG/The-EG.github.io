@@ -4,9 +4,15 @@
 
 {% block content %}
     <h2>Tags for {{ SITENAME }}</h2>
-    <ul>
+    <div class="d-flex flex-wrap">
     {% for tag, articles in tags|sort %}
-        <li><a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a> ({{ articles|count }})</li>
+        <div class="mb-1 me-1">
+            <a 
+                class="btn btn-outline-secondary"
+                href="{{ SITEURL }}/{{ tag.url }}">
+                {{ tag }} ({{ articles|count }})
+            </a>
+        </div>
     {% endfor %}
-    </ul>
+    </div>
 {% endblock %}
