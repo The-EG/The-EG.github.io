@@ -22,6 +22,7 @@ class Html5Translator(HTMLTranslator):
         # set an empty alt if alt is not specified
         # avoids that alt is taken from src
         node["alt"] = node.get("alt", "")
+        node['classes'].append('img-fluid')
         return HTMLTranslator.visit_image(self, node)
     
     # from html4css1
