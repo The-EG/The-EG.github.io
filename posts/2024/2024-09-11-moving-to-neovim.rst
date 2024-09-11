@@ -708,7 +708,7 @@ existing plugins (all of this can go into ``init.lua``):
         {'🔧', 'Add or update configuration files.'},
         {'🔨', 'Add or update development scripts.'},
         {'🌐', 'Internationalization and localization.'},
-        {'✏️' , 'Fix tyops.'},
+        {'✏️' , 'Fix typos.'},
         {'💩', 'Write bad code that needs to be improved.'},
         {'⏪️', 'Revert changes.'},
         {'🔀', 'Merge branches.'},
@@ -1091,9 +1091,6 @@ The entire ``init.lua`` with everything above:
     }
 
     feline.setup({components = statusline_components})
-    -- feline.winbar.setup()
-    --feline.statuscolumn.setup()
-
 
     local gitmojis = {
         {'🎨', 'Improve structure/format of the code.'},
