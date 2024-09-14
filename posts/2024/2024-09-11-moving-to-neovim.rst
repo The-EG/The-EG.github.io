@@ -659,6 +659,12 @@ The only catch here is that it needs to be installed to the system folder, not
 the user fonts folder. That can be done by holding shift while right clicking 
 on the downloaded ``.ttf`` and selecting 'Install for all users'.
 
+.. note::
+
+   If you install a 'mono' variant, the icons will appear small because they are
+   scaled to be the width of a normal character. I later installed and used the
+   normal variant, which makes the icons larger, which looks nicer.
+
 Once installed, select the font within Windows Terminal.
 
 Now the status line is looking nice!
